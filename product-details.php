@@ -5,11 +5,12 @@
 <?php include 'includes/header.inc.php';?>
 </head>
 <?php include 'includes/navbar.inc.php';?>
-<?php include 'includes/autoloader.inc.php';?>
+<?php include_once 'includes/autoloader.inc.php';?>
 <?php $product  = new product;  ?>
 <?php $category = new category; ?>
 <?php $comment  = new comment; ?>
 <?php $users    = new users; ?>
+<?php $cart     = new cart; ?>
 
 
 
@@ -20,6 +21,22 @@ if(isset($_POST['btn-comment']) AND $_SERVER['REQUEST_METHOD'] =='POST'){
 	return $comment->insertComment($_POST['productID'],$_POST['userID'],$_POST['comment-txt']);
 
 }
+
+
+
+//add to cart 
+
+
+	 	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCartBtn'])){
+	 			if(Session::get('userLogin')==true){
+					$quantity = $_POST['quantity'];
+					$id = $_GET['productID'];
+					$addCart  = $cart->addToCart($quantity, $id);
+				}else{ header("location:login.php"); } 
+		}	
+
+	
+
 
 
 
@@ -47,6 +64,22 @@ if(isset($_POST['btn-comment']) AND $_SERVER['REQUEST_METHOD'] =='POST'){
 		</div>
 	</section>
 
+
+	<!-- msg notification -->
+
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+				<?php if (isset($cart->infomsg)) {?>
+					<div class="alert alert-success text-center"><?php echo $cart->infomsg; ?></div>
+				<?php }?>
+
+				<?php if (isset($cart->errormsg)) {?>
+					<div class="alert alert-danger text-center"><?php echo $cart->errormsg; ?></div>
+				<?php }?>
+		</div>
+	</div>
+
+
 	<section class="details">
 		<div class="container">
 			<div class="row">
@@ -55,16 +88,41 @@ if(isset($_POST['btn-comment']) AND $_SERVER['REQUEST_METHOD'] =='POST'){
 
 				<?php   $category->getCatById(product::$catID) ;   ?>
 
-
 				<div class="col-sm-12 col-md-6 details-txt ">
 					<h3 class="d-flex flex-row-reverse"><?php echo product::$productName; ?></h3>
 					<h5 class="d-flex flex-row-reverse"> : قیمت  <small><?php  echo product::$price; ?></small></h5>
 					<h5 class="d-flex flex-row-reverse"> : دسته بندی  <small><?php echo $category->catName; ?></small></h5>
 					<h5 class="d-flex flex-row-reverse"> : توضیحات <small><?php  echo product::$body; ?></small> </h5>
 
-					<a  href="#" class="btn  btn-sm add-to-cart-btn ">افزودن به سبد خرید</a>
-					<a href="#" class="btn btn-success btn-sm ">خرید حالا</a>
+        <!-- ///// quantity fild and js -->
+
+				<?php  include 'includes/quantityjs.php' ;   ?>
+
+        <form action="" method="post">
+                       
+                <div class="input-group mb-4" style="width:200px;">
+                      <span class="input-group-btn">
+                           <button type="button" class="quantity-left-minus btn  btn-number"  data-type="minus" data-field="">
+                                 <i class="mb-2">-</i>
+                            </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="6">
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-right-plus btn  btn-number" data-type="plus" data-field="">
+                                    <i class="bi bi-plus"></i>
+                            </button>
+                        </span>
+                </div>
+
+
+					<button name="addToCartBtn" type="submit" class="btn btn-sm add-to-cart-btn ">افزودن به سبد خرید</button>
+
+				</form>
+
+
+					<button class="btn btn-success btn-sm m-2">خرید حالا</button>
 				</div>
+
 
 
 				<div class="col-sm-12 col-md-6 text-center">

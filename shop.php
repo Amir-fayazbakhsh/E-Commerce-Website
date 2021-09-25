@@ -5,7 +5,7 @@
 <?php include 'includes/header.inc.php';?>
 </head>
 <?php include 'includes/navbar.inc.php';?>
-<?php include 'includes/autoloader.inc.php';?>
+<?php include_once 'includes/autoloader.inc.php';?>
 <?php $product  = new product;?>
 <?php $category = new category;?>
 <body>
@@ -29,6 +29,24 @@
 
 
 	<section>
+
+
+		<div class="container search-box">
+			<div class="row ">
+				<div class="col-lg-6 col-sm-12 mt-4">
+					<form method="post" action="search.php">
+					  <div class="input-group ">
+					    <input type="text" name="searchtext" class="form-control" placeholder="Search">
+					    <div class="input-group-btn">
+					      <button  class="btn btn-default" name="searchbtn" type="submit">
+					        <i class="bi bi-search"></i>
+					      </button>
+					    </div>
+					  </div>
+					</form>
+				</div>
+			</div>
+		</div>
 
 		<div class="container mt-5">
 			<div class="row">
@@ -100,7 +118,16 @@
 		              </ul>
 		            </div>
 		          </div>
+
+
+
+		          
+
+							          
 		        </div><!--category part-->
+
+
+
 
 			</div>
 		</div>

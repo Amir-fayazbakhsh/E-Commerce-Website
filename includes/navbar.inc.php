@@ -1,15 +1,28 @@
   <?php
     $filepath = realpath(dirname(__FILE__));
     include_once($filepath."/../lib/Session.php");
-     Session::init(); 
+     Session::init();
   ?>
+
+  <?php  include_once($filepath.'/../class/cart.class.php'); ?>
+  <?php $cart = new cart; ?>
 
   <header>
     <!-- navbar -->
    <nav class="navbar navbar-expand-lg pt-4 pb-4">
       <div class="container">
         <a class="navbar-brand" href="#"><img src="styles/picture/logo.png"></a>
-        <a class="ml-2 mt-2 basket" href="#"><span class="badge">22</span><i class="bi bi-basket"></i></a>
+
+          <?php $login = Session::get('userLogin') ?>
+          <?php if($login==true){  ?>
+              <a class="ml-2 mt-2 basket" href="cart.php"><span class="badge"><?php $cart->cartCount(); ?></span><i class="bi bi-basket"></i></a>
+          <?php }else{ ?>
+
+              <a class="ml-2 mt-2 basket" href="login.php"><span class="badge">0</span><i class="bi bi-basket"></i></a>
+
+          <?php } ?>
+
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="bi bi-justify-right"></i>
         </button>

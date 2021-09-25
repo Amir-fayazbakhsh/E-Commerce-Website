@@ -3,7 +3,7 @@
       box-sizing: border-box;
       padding: 0;
       margin: 0;
-      background-color: #ffffff;
+      
    }
 
 
@@ -117,16 +117,25 @@
    }
 
 
-   .carousel-caption button{
+   .carousel-caption button {
     background-color: #ffffff;
-    color:#000;
+    color:#555;
     transition: 0.4s ease-in;
     font-weight: 400;
    }
 
+   .carousel-caption button a{
+
+     color: #000;
+    font-weight: 400;
+
+
+   }
+
+
+
    .carousel-caption button:hover{
-    background-color: #000;
-    color:#ffff;
+    border: 1px solid #feb737;
     padding-right: 50px;
     padding-left: 50px;
     
@@ -529,7 +538,7 @@
   margin-left: 50px;
 }
 
-.comments .comment-form,p{
+.comments .comment-form ,.comments .comment-form p{
 
   direction: rtl;
   float: right;
@@ -572,6 +581,43 @@
 
   border-style: none;
   border: 1px solid #F7DC6F;
+
+
+}
+
+
+.details .details-txt .add-to-cart-btn{
+
+  background-color: #feb737;
+  color: #fff;
+}
+
+
+
+.cartTotal {
+
+
+ 
+}
+
+.cartTotal table{
+
+  
+
+}
+
+.cartTotal table tr{
+
+ margin: 20px 0;
+
+
+} 
+
+
+.cartTotal table tr th,.cartTotal table tr th{
+
+  margin: 0 20px;
+ 
 
 
 }

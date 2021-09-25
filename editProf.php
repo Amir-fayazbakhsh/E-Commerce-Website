@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <title>HOME</title>
-<?php include 'includes/header.inc.php';?>
+<?php include_once 'includes/header.inc.php';?>
 </head>
 <body>
-<?php include 'includes/navbar.inc.php';?>
-<?php include 'includes/autoloader.inc.php';?>
+<?php include_once 'includes/navbar.inc.php';?>
+<?php include_once 'includes/autoloader.inc.php';?>
   
 <?php
 

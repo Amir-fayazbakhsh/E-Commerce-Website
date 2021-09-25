@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php include 'includes/navbar.inc.php';?>
-<?php include 'includes/autoloader.inc.php';?>
+<?php include_once 'includes/autoloader.inc.php';?>
   
 <?php
 
