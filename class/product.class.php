@@ -83,7 +83,6 @@ class product {
 		}
 
 	} ////insert product
-
 	//update product
 	public function updateProduct($data, $file, $id) {
 
